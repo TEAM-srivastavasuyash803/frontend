@@ -1,0 +1,522 @@
+﻿/*
+ * ASTRA - Kepler Exoplanet Detection System
+ * Aesthetic Palette: Warm Light Beige, Sandstone, Cream & Linen
+ */
+
+:root {
+  --bg-main: #F7F4EE;
+  --bg-secondary: #EFE9DE;
+  --bg-card: #FAF8F5;
+  --bg-card-alt: #F3ECE1;
+  --bg-card-white: #FFFFFF;
+  --border-light: #E4DCD0;
+  --border-medium: #D5C8B6;
+  --border-focus: #C46243;
+  
+  --text-primary: #2C2520;
+  --text-secondary: #63584E;
+  --text-muted: #8E8275;
+  --text-inverse: #FAF8F5;
+  
+  --accent-terracotta: #C46243;
+  --accent-terracotta-hover: #A84F33;
+  --accent-terracotta-light: #F9ECE8;
+  
+  --accent-sage: #4E7554;
+  --accent-sage-light: #EAF2EB;
+  
+  --accent-ochre: #C0852A;
+  --accent-ochre-light: #FAF3E5;
+  
+  --accent-wine: #9E4545;
+  --accent-wine-light: #FAECEC;
+
+  --shadow-sm: 0 2px 6px rgba(50, 40, 30, 0.04);
+  --shadow-md: 0 6px 16px rgba(50, 40, 30, 0.06);
+  --shadow-lg: 0 12px 28px rgba(50, 40, 30, 0.08);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  padding-bottom: 60px;
+}
+
+/* Header & Top Navigation */
+.navbar {
+  background: var(--bg-card-white);
+  border-bottom: 1px solid var(--border-light);
+  padding: 16px 36px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  background: var(--accent-terracotta);
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  box-shadow: 0 2px 8px rgba(196, 98, 67, 0.3);
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.nav-badges {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge-sand {
+  background: var(--bg-card-alt);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.badge-sage {
+  background: var(--accent-sage-light);
+  color: var(--accent-sage);
+  border: 1px solid #CFE2D2;
+}
+
+.badge-terracotta {
+  background: var(--accent-terracotta-light);
+  color: var(--accent-terracotta);
+  border: 1px solid #F2D3CB;
+}
+
+.badge-wine {
+  background: var(--accent-wine-light);
+  color: var(--accent-wine);
+  border: 1px solid #F2D0D0;
+}
+
+/* Layout Container */
+.container {
+  max-width: 1360px;
+  margin: 28px auto;
+  padding: 0 24px;
+}
+
+/* Star Selection & Control Bar */
+.control-bar {
+  background: var(--bg-card-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.control-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+select.input-control, input.input-control {
+  background: var(--bg-main);
+  border: 1px solid var(--border-medium);
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  min-width: 240px;
+  transition: all 0.2s ease;
+}
+
+select.input-control:focus, input.input-control:focus {
+  border-color: var(--border-focus);
+  background: white;
+}
+
+.btn {
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent-terracotta);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--accent-terracotta-hover);
+  box-shadow: 0 4px 10px rgba(196, 98, 67, 0.25);
+}
+
+.btn-secondary {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-alt);
+}
+
+.btn-success {
+  background: var(--accent-sage);
+  color: white;
+}
+
+.btn-success:hover {
+  background: #3F6144;
+}
+
+/* Metric Banners */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  background: var(--bg-card-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--border-medium);
+}
+
+.metric-card.accent-terracotta::before { background: var(--accent-terracotta); }
+.metric-card.accent-sage::before { background: var(--accent-sage); }
+.metric-card.accent-ochre::before { background: var(--accent-ochre); }
+
+.metric-title {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+.metric-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Main Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Card Styles */
+.card {
+  background: var(--bg-card-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Chart containers */
+.chart-box {
+  width: 100%;
+  height: 280px;
+  position: relative;
+  background: #FCFAF7;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.chart-box.tall {
+  height: 320px;
+}
+
+/* Vetting Diagnostics Cards */
+.vetting-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vetting-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vetting-info h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.vetting-info p {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.vetting-status {
+  text-align: right;
+}
+
+/* Exoplanet Characterisation Spotlight */
+.planet-spotlight {
+  background: linear-gradient(135deg, #FDFBF7 0%, #F5EFE6 100%);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+.planet-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.planet-category {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-terracotta);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.planet-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.p-stat {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+}
+
+.p-stat-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.p-stat-val {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+/* Submission Hub & Table */
+.table-responsive {
+  max-height: 380px;
+  overflow-y: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+
+.sub-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.sub-table th {
+  background: var(--bg-card-alt);
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-medium);
+  position: sticky;
+  top: 0;
+}
+
+.sub-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+}
+
+.sub-table tr:nth-child(even) {
+  background: #FCFAF7;
+}
+
+.sub-table tr:hover {
+  background: var(--bg-card-alt);
+}
+
+/* Section Header */
+.section-head {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.section-head h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.section-head p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
