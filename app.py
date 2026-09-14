@@ -153,7 +153,7 @@ async def get_star_list():
 
 
 @app.get("/api/analyze")
-async def analyze_star(star_id: str = "DEMO_EARTH_ANALOG", method: str = "savgol", n_coarse: int = 10000):
+async def analyze_star(star_id: str = "DEMO_EARTH_ANALOG", method: str = "savgol", n_coarse: int = 4000):
     raw_df = None
     stellar_meta = {"teff": 5778.0, "logg": 4.438, "radius": 1.0, "kepmag": 12.2}
 
@@ -255,6 +255,7 @@ async def analyze_star(star_id: str = "DEMO_EARTH_ANALOG", method: str = "savgol
     for pk in bls_res.get("top_peaks", []):
         clean_top_peaks.append({
             "period": float(pk.get("period", 0)),
+            "coarse_period": float(pk.get("coarse_period", pk.get("period", 0))),
             "depth_ppm": float(pk.get("depth_ppm", 0)),
             "duration_hours": float(pk.get("duration_hours", 0)),
             "sde": float(pk.get("sde", 0)),

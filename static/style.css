@@ -1,4 +1,4 @@
-﻿/*
+/*
  * ASTRA - Kepler Exoplanet Detection System
  * Aesthetic Palette: Warm Light Beige, Sandstone, Cream & Linen
  */
@@ -356,6 +356,83 @@ select.input-control:focus, input.input-control:focus {
 .chart-box.tall {
   height: 320px;
 }
+
+.chart-box.bls-chart-large {
+  height: 380px;
+}
+
+/* BLS Peaks Panel to fill space beside right column */
+.bls-peaks-panel {
+  margin-top: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bls-peaks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bls-peaks-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bls-peaks-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.bls-table-wrap {
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: white;
+}
+
+.bls-peaks-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.bls-peaks-table th {
+  background: var(--bg-card-alt);
+  color: var(--text-secondary);
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-medium);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.bls-peaks-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-primary);
+  vertical-align: middle;
+}
+
+.bls-peaks-table th:nth-child(1), .bls-peaks-table td:nth-child(1) { width: 8%; text-align: center; }
+.bls-peaks-table th:nth-child(2), .bls-peaks-table td:nth-child(2) { width: 18%; text-align: left; font-family: monospace; }
+.bls-peaks-table th:nth-child(3), .bls-peaks-table td:nth-child(3) { width: 20%; text-align: left; font-family: monospace; font-weight: 600; }
+.bls-peaks-table th:nth-child(4), .bls-peaks-table td:nth-child(4) { width: 14%; text-align: right; }
+.bls-peaks-table th:nth-child(5), .bls-peaks-table td:nth-child(5) { width: 16%; text-align: right; font-family: monospace; }
+.bls-peaks-table th:nth-child(6), .bls-peaks-table td:nth-child(6) { width: 12%; text-align: right; font-family: monospace; }
+.bls-peaks-table th:nth-child(7), .bls-peaks-table td:nth-child(7) { width: 12%; text-align: center; }
 
 /* Vetting Diagnostics Cards */
 .vetting-list {

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ASTRA - Interactive Exoplanet Detection Dashboard Client
  * Beige / Sandstone theme plotting and pipeline integration
  */
@@ -118,6 +118,9 @@ function renderDashboard(data) {
 
   // 6. Update Characterisation Spotlight
   renderCharacterisation(data);
+
+  // 7. Update Enlarged BLS Peaks Table
+  renderBLSPeaks(data.bls.top_peaks, data.bls.period);
 }
 
 function plotLightCurve(data) {
@@ -184,6 +187,7 @@ function plotBLS(data) {
 
   const layout = {
     margin: { l: 55, r: 20, t: 20, b: 40 },
+    autosize: true,
     paper_bgcolor: THEME.paperBg,
     plot_bgcolor: THEME.plotBg,
     font: { family: '-apple-system, sans-serif', color: THEME.textColor, size: 11 },
@@ -340,3 +344,54 @@ async function generateSubmissionPreview() {
     tbody.innerHTML = `<tr><td colspan="6" style="color: var(--accent-wine); text-align: center; padding: 20px;">Failed to generate submission: ${err.message}</td></tr>`;
   }
 }
+
+function renderBLSPeaks(peaks, bestPeriod) {
+  const tbody = document.getElementById('blsPeaksTableBody');
+  if (!tbody) return;
+  if (!peaks || peaks.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 14px;">No candidate peaks recorded.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = '';
+  peaks.forEach((pk, idx) => {
+    const isTop = Math.abs(pk.period - bestPeriod) < 1e-4;
+    const tr = document.createElement('tr');
+    if (isTop) {
+      tr.style.background = 'var(--accent-terracotta-light)';
+    }
+
+    const sdeVal = pk.sde || 0.0;
+    const sdeClass = sdeVal >= 8.5 ? 'badge badge-sage' : (sdeVal >= 6.0 ? 'badge badge-ochre' : 'badge badge-sand');
+    const statusHtml = isTop
+      ? `<span class="badge badge-terracotta" style="padding: 2px 8px; font-size: 11px;">PRIMARY</span>`
+      : `<span class="badge badge-sand" style="padding: 2px 8px; font-size: 11px;">HARMONIC</span>`;
+
+    const coarseVal = pk.coarse_period ? `${pk.coarse_period.toFixed(3)} d` : '—';
+    const periodVal = pk.period ? `${pk.period.toFixed(4)} d` : '—';
+    const depthVal = pk.depth_ppm ? `${pk.depth_ppm.toFixed(1)} ppm` : '—';
+    const durVal = pk.duration_hours ? `${pk.duration_hours.toFixed(1)} h` : '—';
+
+    tr.innerHTML = `
+      <td style="text-align: center; font-weight: 700;">#${idx + 1}</td>
+      <td style="font-family: monospace;">${coarseVal}</td>
+      <td style="font-family: monospace; font-weight: 600; color: ${isTop ? 'var(--accent-terracotta)' : 'inherit'};">${periodVal}</td>
+      <td style="text-align: right;"><span class="${sdeClass}">${sdeVal.toFixed(1)}</span></td>
+      <td style="font-family: monospace; text-align: right;">${depthVal}</td>
+      <td style="font-family: monospace; text-align: right;">${durVal}</td>
+      <td style="text-align: center;">${statusHtml}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Auto-resize Plotly charts whenever the browser window is resized
+window.addEventListener('resize', () => {
+  const plots = ['lightCurvePlot', 'blsPlot', 'foldedPlot'];
+  plots.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.data) {
+      Plotly.Plots.resize(el);
+    }
+  });
+});

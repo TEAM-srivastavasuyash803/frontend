@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -104,16 +104,51 @@
           <div id="lightCurvePlot" class="chart-box tall"></div>
         </div>
 
-        <!-- BLS Periodogram Card -->
-        <div class="card">
+        <!-- Enlarged BLS Periodogram & Diagnostic Candidate Peaks Card -->
+        <div class="card bls-card-enlarged">
           <div class="card-header">
             <div>
               <div class="card-title">📊 Coarse-to-Fine Box Least Squares (BLS) Search</div>
-              <div class="card-desc">Log-spaced period grid with SDE peak detection (PRD §5.3)</div>
+              <div class="card-desc">Log-spaced period grid (3–400d) with robust MAD-based Signal Detection Efficiency (PRD §5.3)</div>
             </div>
-            <div id="bestPeakBadge" class="badge badge-terracotta">Best P: — d</div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span class="badge badge-ochre">SDE Floor: 8.5</span>
+              <div id="bestPeakBadge" class="badge badge-terracotta">Best P: — d</div>
+            </div>
           </div>
-          <div id="blsPlot" class="chart-box"></div>
+
+          <!-- Enlarged Interactive Periodogram Plot -->
+          <div id="blsPlot" class="chart-box bls-chart-large"></div>
+
+          <!-- Candidate Peaks Diagnostic Table to Fill Vertical Space -->
+          <div class="bls-peaks-panel">
+            <div class="bls-peaks-header">
+              <span class="bls-peaks-title">⚡ Isolated Candidate Period Peaks (Excluding ±10% Aliases)</span>
+              <span class="bls-peaks-sub">Coarse sweep: 20,000 trials • Fine refinement: ±2%</span>
+            </div>
+            <div class="table-responsive bls-table-wrap">
+              <table class="sub-table bls-peaks-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Coarse Trial</th>
+                    <th>Refined Period</th>
+                    <th>SDE</th>
+                    <th>Fitted Depth</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="blsPeaksTableBody">
+                  <tr>
+                    <td colspan="7" style="text-align: center; color: var(--text-muted); padding: 14px;">
+                      Analyzing star periodogram...
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
 
       </div>
