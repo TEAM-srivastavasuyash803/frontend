@@ -1,6 +1,6 @@
 """
 Stellar Variability & Noise Detrending Module
-Solves PRD Section 5.2: Preserves shallow transit depth (>90% recovery)
+Preserves shallow transit depth (>90% recovery)
 using iterative Savitzky-Golay filtering with in-transit point masking.
 """
 import numpy as np
@@ -35,7 +35,7 @@ def iterative_savgol_detrend(
     sigma_upper=4.0,
 ):
     """
-    Advanced Detrending (PRD Section 5.2 Improvement):
+    Advanced Detrending (Iterative Continuum Recovery):
     - Splits into continuous segments where gaps > 0.75 days
     - For each segment, fits Savitzky-Golay polynomial
     - Identifies transit dips (residuals < -sigma_lower * MAD) and flares

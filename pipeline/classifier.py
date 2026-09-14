@@ -1,6 +1,6 @@
-﻿"""
+"""
 Candidate Vetting Machine Learning Classifier & Confidence Calibration Module
-Implements PRD Section 5.4, 5.5, and 5.6:
+Implements multi-feature classification and probabilistic calibration:
 - Multi-feature Random Forest / Gradient Boosting classifier
 - Calibrated probability output via Platt scaling / continuous logistic
 - Replaces flat confidence with highly informative belief score (high nunique)
@@ -133,7 +133,7 @@ class CandidateClassifier:
                 conf = proba
             return prediction, round(conf, 4)
 
-        # Physics-Informed Probabilistic Model (PRD Section 5.5 & 5.6 compliant)
+        # Physics-Informed Probabilistic Calibration Model
         # SDE logit
         sde_logit = (sde - 9.5) * 0.42
         

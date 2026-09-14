@@ -1,6 +1,6 @@
-﻿"""
+"""
 Training and Validation Benchmark Suite
-Verifies PRD Milestone 1 & 2:
+Verifies Milestone 1 & 2:
 - Tests depth recovery on injected truth signals (confirming >90% recovery vs baseline 33%)
 - Verifies period recovery within 2% tolerance
 - Fits and evaluates the Calibrated Classifier
@@ -49,7 +49,7 @@ def verify_depth_recovery():
         return
 
     print("\n" + "=" * 60)
-    print(f" PRD M1 Benchmark: Depth Recovery Verification (KIC {kepid})")
+    print(f" M1 Benchmark: Depth Recovery Verification (KIC {kepid})")
     print("=" * 60)
     print(f"* True Period   : {row.period_days:.4f} days")
     print(f"* True Depth    : {row.depth_ppm:.1f} ppm")

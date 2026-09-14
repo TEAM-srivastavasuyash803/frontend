@@ -1,6 +1,6 @@
-﻿"""
+"""
 Submission Generation & Strict Schema Validation Module
-Complies with PRD Section 6 and Section 7 specifications.
+Complies with official hackathon submission specifications.
 """
 import os
 import re
@@ -20,7 +20,7 @@ REQUIRED_COLUMNS = [
 
 def format_submission_row(star_id, prediction, confidence, period=None, depth_ppm=None, duration_hours=None):
     """
-    Formats a single submission row following the strict PRD Section 6 rules:
+    Formats a single submission row following the strict schema rules:
     When prediction = 0, characterisation fields must be None/empty (not 0, not -1, not NA).
     """
     row = {
@@ -57,7 +57,7 @@ def generate_submission_file(rows, output_path="submission_astra.csv"):
 
 def validate_submission_dataframe(df):
     """
-    Runs the official jury assertion suite specified in PRD Section 6.3 & 6.4:
+    Runs the official jury assertion suite specified in evaluation criteria:
     Raises AssertionError or returns list of descriptive errors if non-compliant.
     """
     errors = []

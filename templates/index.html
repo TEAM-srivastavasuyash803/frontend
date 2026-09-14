@@ -37,7 +37,7 @@
       <div class="control-group">
         <label class="control-label" for="detrendMethod">Detrending Method:</label>
         <select id="detrendMethod" class="input-control" style="min-width: 280px;">
-          <option value="savgol">Savitzky-Golay + Iterative Masking (PRD §5.2: >90% depth)</option>
+          <option value="savgol">Savitzky-Golay + Iterative Masking (Depth Recovery >90%)</option>
           <option value="baseline">Centred Rolling Median (Starter Baseline: 33% depth)</option>
         </select>
       </div>
@@ -52,7 +52,7 @@
       </div>
     </div>
 
-    <!-- Key Metrics Ribbon (PRD §2, §5.6, §7 Evaluator Alignment) -->
+    <!-- Key Metrics Ribbon (Evaluator Alignment) -->
     <div class="metrics-row">
       <div class="metric-card accent-terracotta">
         <div class="metric-title">AI Detection Decision</div>
@@ -60,14 +60,14 @@
         <div id="metricStatus" class="metric-sub">Ready to analyze</div>
       </div>
       <div class="metric-card accent-sage">
-        <div class="metric-title">Calibrated Confidence (PRD §5.6)</div>
+        <div class="metric-title">Calibrated Confidence</div>
         <div id="metricConfidence" class="metric-value">—</div>
         <div class="metric-sub" id="metricPrAuc">PR-AUC: 0.942 • High Spread (nunique: 87)</div>
       </div>
       <div class="metric-card accent-ochre">
         <div class="metric-title">Signal Detection Efficiency</div>
         <div id="metricSde" class="metric-value">—</div>
-        <div class="metric-sub">Robust MAD Floor: 8.5 (PRD §5.3)</div>
+        <div class="metric-sub">Robust MAD Floor: 8.5</div>
       </div>
       <div class="metric-card">
         <div class="metric-title">Orbital Period</div>
@@ -77,7 +77,7 @@
       <div class="metric-card">
         <div class="metric-title">Transit Depth &amp; Recovery</div>
         <div id="metricDepth" class="metric-value">—</div>
-        <div id="metricDuration" class="metric-sub">>90% Depth Preserved (§5.2)</div>
+        <div id="metricDuration" class="metric-sub">>90% Depth Preserved</div>
       </div>
     </div>
 
@@ -95,7 +95,7 @@
               <div class="card-desc">Comparing raw quarter-normalized flux against stellar variability filter</div>
             </div>
             <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-              <span id="depthPreservationBadge" class="badge badge-sage">Savitzky-Golay: 94.8% Preserved (>90% PRD §5.2)</span>
+              <span id="depthPreservationBadge" class="badge badge-sage">Savitzky-Golay: 94.8% Preserved (>90% Recovery)</span>
               <span id="scatterBadge" class="badge badge-sand">Scatter: — ppm</span>
             </div>
           </div>
@@ -107,7 +107,7 @@
           <div class="card-header">
             <div>
               <div class="card-title">📊 Coarse-to-Fine Box Least Squares (BLS) Search</div>
-              <div class="card-desc">Log-spaced period grid (3–400d) with robust MAD-based Signal Detection Efficiency (PRD §5.3)</div>
+              <div class="card-desc">Log-spaced period grid (3–400d) with robust MAD-based Signal Detection Efficiency</div>
             </div>
             <div style="display: flex; gap: 8px; align-items: center;">
               <span class="badge badge-ochre">SDE Floor: 8.5</span>
@@ -169,7 +169,7 @@
         <div class="card">
           <div class="card-header">
             <div>
-              <div class="card-title">🛡️ Candidate Vetting Suite (PRD §5.5)</div>
+              <div class="card-title">🛡️ Candidate Vetting Suite</div>
               <div class="card-desc">Multi-feature false-positive rejection engine</div>
             </div>
             <div id="vettingBadge" class="badge badge-sage">Vetting Passed</div>
@@ -329,8 +329,8 @@
     <div class="card" style="margin-top: 20px;">
       <div class="card-header">
         <div>
-          <div class="card-title">📋 Hackathon Submission Hub & Jury Assertion Suite</div>
-          <div class="card-desc">Strict compliance verification against PRD Section 6 (88 lines, STAR_#### regex, blank non-detections)</div>
+          <div class="card-title">📋 Hackathon Submission Hub &amp; Jury Assertion Suite</div>
+          <div class="card-desc">Strict compliance verification (88 lines, STAR_#### regex, blank non-detections)</div>
         </div>
         <div style="display: flex; gap: 10px;">
           <a href="/api/download_submission" target="_blank" class="btn btn-success">
@@ -339,13 +339,13 @@
         </div>
       </div>
 
-      <!-- Pre-Flight Data Reconciliation & Audit Panel (PRD §4.7 & §5.9) -->
+      <!-- Pre-Flight Data Reconciliation & Audit Panel -->
       <div class="audit-panel">
         <div class="audit-header">
           <div class="audit-title-group">
             <span class="audit-icon">🛡️</span>
             <div>
-              <div class="audit-title">Pre-Flight Data Reconciliation &amp; Audit Panel (PRD §4.7 &amp; §5.9)</div>
+              <div class="audit-title">Pre-Flight Data Reconciliation &amp; Audit Panel</div>
               <div class="audit-sub">Detecting 49 present vs 38 missing private pack star files • Enforcing §5.9 partial-pack contingency padding</div>
             </div>
           </div>
@@ -374,7 +374,7 @@
         <div class="audit-callout">
           <div class="audit-callout-icon">⚠️</div>
           <div class="audit-callout-text">
-            <strong>PRD §5.9 Partial-Pack Contingency Mode Active:</strong>
+            <strong>Partial-Pack Contingency Mode Active (§5.9):</strong>
             <span>The evaluation zip provides 49 star light curves and skips 38 target IDs. To strictly avoid immediate disqualification under Jury Rules 1 &amp; 2, missing targets are safely filled with <code>prediction=0, confidence=0.0000, and empty characterisation (,,,)</code>. This guarantees exactly 88 lines (1 header + 87 star rows) without fabricating detections.</span>
           </div>
         </div>
@@ -389,7 +389,7 @@
         </div>
       </div>
 
-      <!-- Live 7-Point Jury Assertions Checklist (PRD §6.3 & §6.4) -->
+      <!-- Live 7-Point Jury Assertions Checklist -->
       <div id="juryChecklist" class="jury-checklist">
         <span class="badge badge-sage" id="rule1Badge">✓ Rule 1: Exactly 88 Lines (87 Stars + Header)</span>
         <span class="badge badge-sage" id="rule2Badge">✓ Rule 2: Header Schema (star_id,prediction,confidence,period,depth_ppm,duration_hours)</span>

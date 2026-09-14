@@ -1,6 +1,6 @@
-﻿"""
+"""
 Planetary Characterisation & Astrophysical Parameter Estimation Module
-Implements PRD Section 5.7 & astrophysical derived parameters.
+Calculates physical and orbital derived parameters.
 """
 import numpy as np
 

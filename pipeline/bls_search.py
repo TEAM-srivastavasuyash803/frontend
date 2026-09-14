@@ -1,6 +1,6 @@
-﻿"""
+"""
 Box Least Squares (BLS) Coarse-to-Fine Transit Search Module
-Complies with PRD Section 5.3 & starter notebook specifications.
+Complies with robust MAD-based transit search specifications.
 """
 import numpy as np
 from astropy.timeseries import BoxLeastSquares

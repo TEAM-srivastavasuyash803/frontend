@@ -1,4 +1,4 @@
-﻿"""
+"""
 End-to-End Pipeline Runner for Kepler Exoplanet Detection
 Implements Section 5 and Section 8 (auditability, reproducible entry point).
 """
@@ -134,7 +134,7 @@ def main():
     print("=" * 60)
     print(f"* Input Directory   : {args.input}")
     print(f"* Output Submission : {args.output}")
-    print(f"* Detrending Method : {args.method.upper()} (PRD Sec 5.2 compliant)")
+    print(f"* Detrending Method : {args.method.upper()} (>90% depth recovery compliant)")
     
     files = sorted(glob.glob(os.path.join(args.input, "*.parquet")))
     if not files:

@@ -1,11 +1,11 @@
-﻿# 🌌 TEAM ASTRA — srivastavasuyash803
+# 🌌 TEAM ASTRA — srivastavasuyash803
 ### *AI-Based Detection & Characterisation of Earth-Like Exoplanets in Kepler Photometry*
 
 [![Python Version](https://img.shields.io/badge/Python-3.13%2B-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
 [![Astropy](https://img.shields.io/badge/Astropy-8.0%2B-orange.svg?logo=astropy&logoColor=white)](https://www.astropy.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.9%2B-F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.141%2B-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Submission Validated](https://img.shields.io/badge/Submission-PRD%20§6%20Compliant-brightgreen.svg)]()
+[![Submission Validated](https://img.shields.io/badge/Submission-Jury%20Rule%20Validated-brightgreen.svg)]()
 [![Theme](https://img.shields.io/badge/UI%20Design-Warm%20Beige%20%2F%20Sand-D5C8B6.svg)]()
 
 ---
@@ -37,32 +37,32 @@ Raw SAP Flux Light Curves
    │   • Bitmask filtering: Removes cosmic rays, safe-mode recoveries, and attitude tweaks
    │   • Per-quarter median normalisation: Eliminates 90-day roll discontinuities
    ▼
-[ 2. Iterative Savitzky-Golay Detrending (PRD §5.2) ]
+[ 2. Iterative Savitzky-Golay Detrending (§5.2) ]
    │   • Baseline flaw: Fixed 1-day rolling median degrades Earth-analog depths down to 33%
    │   • ASTRA improvement: Iterative negative-dip masking (>2.5σ) and continuum interpolation
    │   • Result: Preserves >90% of genuine transit depth while suppressing red noise
    ▼
-[ 3. Coarse-to-Fine Box Least Squares (BLS) Search (PRD §5.3) ]
+[ 3. Coarse-to-Fine Box Least Squares (BLS) Search (§5.3) ]
    │   • Coarse log-spaced grid (PERIOD_MIN = 3.0d to min(400d, baseline/3))
    │   • Peak isolation with ±10% exclusion windows + ±2% fine refinement
    │   • Signal Detection Efficiency (SDE): Robust MAD-based peak significance
    ▼
-[ 4. Multi-Feature Candidate Vetting Engine (PRD §5.5) ]
+[ 4. Multi-Feature Candidate Vetting Engine (§5.5) ]
    │   • Odd/Even Transit Depth Test: Detects 2x eclipsing binaries
    │   • Secondary Eclipse Test at Phase 0.5: Rejects stellar occultations
    │   • Quarter Recurrence & Transit Count (N ≥ 3): Eliminates localized glitches
    │   • In-Transit SNR vs. Out-of-Transit Scatter
    ▼
-[ 5. Machine Learning Classifier & Calibrated Confidence (PRD §5.6) ]
+[ 5. Machine Learning Classifier & Calibrated Confidence (§5.6) ]
    │   • Multi-feature ensemble model (Random Forest / Gradient Boosting)
    │   • Platt-scaled sigmoid probability calibration ensuring high continuous score spread
    ▼
-[ 6. Planetary Characterisation & Habitability Assessment (PRD §5.7) ]
+[ 6. Planetary Characterisation & Habitability Assessment (§5.7) ]
    │   • Period (days), Depth (ppm), Duration (hours), Transit Epoch T0
    │   • Radius ratio Rp/R*, Planet size in Earth radii (R⊕), Semi-major axis a (AU)
    │   • Incident Stellar Flux S/S⊕, Equilibrium Temp Teq, Habitable Zone (HZ) indicator
    ▼
-[ 7. Official Hackathon Submission Suite (PRD §6 & §7) ]
+[ 7. Official Hackathon Submission Suite (§6 & §7) ]
        • Exactly 88 lines: 1 header + 87 star rows (STAR_0000 to STAR_0086)
        • Blank fields (,,,) for non-detections (prediction = 0)
        • Verified with 7-rule jury assertion suite
@@ -88,11 +88,11 @@ In accordance with our project design specifications, we developed a responsive 
 
 | Benchmark Category | Starter Baseline | ASTRA Pipeline Performance | Status |
 |---|---|---|---|
-| **Transit Depth Recovery (PRD §5.2)** | 33% recovered | **>90% recovered** | ✅ Beat floor metric |
-| **Period Recovery Accuracy (PRD §2)** | >10% error | **<0.02% error** (within 2% tolerance) | ✅ Passed |
-| **False Positive Rejection (PRD §5.5)** | 0% (no vetting) | **100% of tested Eclipsing Binaries vetoed** | ✅ Passed |
-| **Confidence Spread (PRD §5.6)** | Flat logistic (1–2 unique values) | **87 unique continuous values** (high PR-AUC) | ✅ Passed |
-| **Submission Schema (PRD §6)** | Unvalidated | **100% compliance across all 7 jury assertions** | ✅ Passed |
+| **Transit Depth Recovery (§5.2)** | 33% recovered | **>90% recovered** | ✅ Beat floor metric |
+| **Period Recovery Accuracy (§2)** | >10% error | **<0.02% error** (within 2% tolerance) | ✅ Passed |
+| **False Positive Rejection (§5.5)** | 0% (no vetting) | **100% of tested Eclipsing Binaries vetoed** | ✅ Passed |
+| **Confidence Spread (§5.6)** | Flat logistic (1–2 unique values) | **87 unique continuous values** (high PR-AUC) | ✅ Passed |
+| **Submission Schema (§6)** | Unvalidated | **100% compliance across all 7 jury assertions** | ✅ Passed |
 
 ---
 

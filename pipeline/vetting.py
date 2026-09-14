@@ -1,6 +1,6 @@
 """
 Candidate Vetting Module
-Implements PRD Section 5.5 requirements:
+Implements comprehensive astrophysical vetting requirements:
 - Odd vs. Even transit depth consistency (detects eclipsing binaries at 2x period)
 - Secondary eclipse test at phase 0.5 (detects occultations from companion stars)
 - Quarter recurrence & transit count verification
@@ -126,7 +126,7 @@ def vet_transit_candidate(t, f, q, period, t0, duration_hours, depth_ppm):
     recurrence_frac = float(len(quarters_with_transit) / max(1, min(total_possible_quarters, observed_transits)))
     recurrence_frac = min(1.0, max(0.0, recurrence_frac))
 
-    # 5. Centroid-Shift / Pixel Stability Test (PRD §5.5 & §9 Ultimate Challenge)
+    # 5. Centroid-Shift / Pixel Stability Test (Ultimate Challenge §9)
     # On-target transits maintain stable photocenter (< 3.0-sigma shift)
     # Background blended eclipsing binaries (BBEBs) show significant photocenter offset
     if in_depth_meas > 0 and in_transit_snr > 3.0:
@@ -138,7 +138,7 @@ def vet_transit_candidate(t, f, q, period, t0, duration_hours, depth_ppm):
         centroid_offset_mas = 5.0
     centroid_pass = bool(centroid_shift_sigma < 3.0)
 
-    # 6. Catalog Cross-Match & Ephemeris Veto (PRD §5.5 & §9)
+    # 6. Catalog Cross-Match & Ephemeris Veto (Ephemeris Vetting §9)
     # Cross-match against Kepler Eclipsing Binary Catalog and Gaia DR3 blended neighbors
     if not odd_even_pass or not secondary_pass:
         catalog_match = "Known Kepler EB / Astrometric False Positive"

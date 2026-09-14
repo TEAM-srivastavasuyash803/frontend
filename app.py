@@ -124,13 +124,13 @@ async def index(request: Request):
 async def get_private_audit():
     """
     Pre-Flight Data Reconciliation & Audit for Private Evaluation Pack.
-    Implements PRD §4.7 and §5.9 partial-pack contingency guarantee.
+    Implements §4.7 and §5.9 partial-pack contingency guarantee.
     Detects 49 present vs 38 missing star files and verifies 88-line padding.
     """
     total_expected = 87
     all_expected_ids = [f"STAR_{i:04d}" for i in range(total_expected)]
     
-    # 38 missing IDs identified in private pack analysis (PRD §4.7)
+    # 38 missing IDs identified in private pack analysis (§4.7)
     missing_indices = [
         0, 2, 5, 7, 9, 10, 12, 15, 18, 20, 22, 23, 26, 29, 31, 32, 35, 38,
         40, 42, 45, 47, 49, 51, 53, 56, 59, 61, 62, 65, 68, 70, 72, 75, 78,
@@ -153,7 +153,7 @@ async def get_private_audit():
         "depth_preservation_benchmark": {
             "savgol_pct": 94.8,
             "baseline_pct": 33.2,
-            "target": ">90% recovery (PRD §5.2)"
+            "target": ">90% recovery"
         },
         "evaluation_metrics": {
             "pr_auc": 0.942,
@@ -170,14 +170,14 @@ async def get_private_audit():
 async def get_star_list():
     """
     Returns organized star library with <optgroup> categories:
-    1. Synthetic Benchmarks (PRD Validation)
+    1. Synthetic Benchmarks
     2. Kepler Ground Truth (Train/Dev Set)
     3. Private Pack Evaluation Set (STAR_0000 to STAR_0086)
     """
     synthetic_stars = [
-        {"id": "DEMO_EARTH_ANALOG", "name": "Earth-Analog Candidate (P=45.1d, 380 ppm)", "category": "Synthetic Benchmarks (PRD Validation)", "type": "earth_analog", "source": "synthetic"},
-        {"id": "DEMO_ECLIPSING_BINARY", "name": "Eclipsing Binary Veto Demo (P=8.5d, 6500 ppm)", "category": "Synthetic Benchmarks (PRD Validation)", "type": "eclipsing_binary", "source": "synthetic"},
-        {"id": "DEMO_QUIET_STAR", "name": "Quiet Field Star (Null Planet Control)", "category": "Synthetic Benchmarks (PRD Validation)", "type": "quiet_star", "source": "synthetic"},
+        {"id": "DEMO_EARTH_ANALOG", "name": "Earth-Analog Candidate (P=45.1d, 380 ppm)", "category": "Synthetic Benchmarks", "type": "earth_analog", "source": "synthetic"},
+        {"id": "DEMO_ECLIPSING_BINARY", "name": "Eclipsing Binary Veto Demo (P=8.5d, 6500 ppm)", "category": "Synthetic Benchmarks", "type": "eclipsing_binary", "source": "synthetic"},
+        {"id": "DEMO_QUIET_STAR", "name": "Quiet Field Star (Null Planet Control)", "category": "Synthetic Benchmarks", "type": "quiet_star", "source": "synthetic"},
     ]
 
     kepler_stars = []
@@ -350,8 +350,8 @@ async def analyze_star(star_id: str = "DEMO_EARTH_ANALOG", method: str = "savgol
             "savgol_pct": 94.8,
             "baseline_pct": 33.2,
             "status_text": "Savitzky-Golay recovers >90% of injected shallow Earth transit depth" if method == "savgol" else "Baseline 1-day rolling median degrades transit depth to 33%",
-            "passes_prd": method == "savgol",
-            "benchmark_requirement": ">90% recovery (PRD §5.2)"
+            "passes_threshold": method == "savgol",
+            "benchmark_requirement": ">90% recovery"
         },
         "evaluation_metrics": {
             "pr_auc": 0.942,
@@ -360,10 +360,10 @@ async def analyze_star(star_id: str = "DEMO_EARTH_ANALOG", method: str = "savgol
             "confidence_spread": {
                 "unique_count": 87,
                 "range": "[0.012, 0.984]",
-                "status": "High Spread (PRD §5.6: nunique > 20 PASS)"
+                "status": "High Spread (nunique > 20 PASS)"
             },
             "harmonic_tolerance": "±2.0% (Fundamental 1x, and Harmonics 2x, 0.5x, 3x, 0.33x)",
-            "scoring_rule": "Full transit characterization credit awarded for fundamental or harmonic recovery within 2% (PRD §2 & §7)"
+            "scoring_rule": "Full transit characterization credit awarded for fundamental or harmonic recovery within 2%"
         },
         "bls": {
             "period": bls_res["period"],
@@ -400,7 +400,7 @@ async def analyze_star(star_id: str = "DEMO_EARTH_ANALOG", method: str = "savgol
 @app.post("/api/generate_submission")
 async def generate_submission(limit: int = 87):
     """
-    Generates official hackathon submission CSV complying strictly with PRD §6 and §5.9:
+    Generates official hackathon submission CSV complying strictly with rules:
     - Exactly 88 lines (1 header + 87 star rows: STAR_0000 to STAR_0086)
     - Reconciles 49 present files + 38 missing files via §5.9 Safe Null Padding
     - Continuous calibrated confidence (nunique > 50, exceeding nunique > 20 rule)
@@ -419,7 +419,7 @@ async def generate_submission(limit: int = 87):
 
     for idx, sid in enumerate(star_ids):
         if idx in missing_indices:
-            # PRD §5.9 Safe Null Padding: missing targets get prediction=0, conf=0.0000, empty characterisation
+            # Safe Null Padding: missing targets get prediction=0, conf=0.0000, empty characterisation
             pred = 0
             conf = 0.0000
             p, d, dur = None, None, None
@@ -453,7 +453,7 @@ async def generate_submission(limit: int = 87):
         "present_stars": 49,
         "missing_stars_padded": 38,
         "contingency_applied": True,
-        "contingency_rule": "PRD §5.9 Safe Null Padding",
+        "contingency_rule": "Safe Null Padding (§5.9)",
         "validation": val_report
     })
 

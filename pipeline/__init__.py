@@ -1,6 +1,6 @@
-﻿"""
+"""
 Kepler Earth-Like Exoplanet Detection Pipeline
-Developed for Vanshika Saxena's PRD Hackathon Submission.
+Developed for Vanshika Saxena's Hackathon Submission.
 """
 from .ingest import load_kepler_data, clean_light_curve
 from .detrend import detrend_light_curve, compare_detrending, iterative_savgol_detrend

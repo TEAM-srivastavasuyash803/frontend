@@ -34,7 +34,7 @@ async function loadStarList() {
     const select = document.getElementById('starSelect');
     select.innerHTML = '';
 
-    // Group stars by category using <optgroup> (PRD §4.6)
+    // Group stars by category using <optgroup>
     const groups = {};
     data.stars.forEach(s => {
       const cat = s.category || 'General Targets';
@@ -140,7 +140,7 @@ function renderDashboard(data) {
 
   document.getElementById('metricConfidence').textContent = `${(data.classification.confidence * 100).toFixed(1)}%`;
   
-  // Update PR-AUC & Spread Readout (PRD §2, §7)
+  // Update PR-AUC & Spread Readout
   const prAucEl = document.getElementById('metricPrAuc');
   if (prAucEl && data.evaluation_metrics) {
     prAucEl.textContent = `PR-AUC: ${data.evaluation_metrics.pr_auc} • High Spread (nunique: ${data.evaluation_metrics.confidence_spread.unique_count})`;
@@ -160,12 +160,12 @@ function renderDashboard(data) {
 
   document.getElementById('scatterBadge').textContent = `Scatter: ${data.detrended_series.scatter_ppm.toFixed(0)} ppm`;
 
-  // Update Depth Preservation Inspector Badge (PRD §5.2)
+  // Update Depth Preservation Inspector Badge
   const dpBadge = document.getElementById('depthPreservationBadge');
   if (dpBadge && data.depth_preservation) {
     const dp = data.depth_preservation;
-    if (dp.passes_prd) {
-      dpBadge.textContent = `Savitzky-Golay: ${dp.preservation_pct.toFixed(1)}% Preserved (>90% PRD §5.2)`;
+    if (dp.passes_threshold) {
+      dpBadge.textContent = `Savitzky-Golay: ${dp.preservation_pct.toFixed(1)}% Preserved (>90% Recovery)`;
       dpBadge.className = 'badge badge-sage';
     } else {
       dpBadge.textContent = `Baseline Median: ${dp.preservation_pct.toFixed(1)}% Preserved (Attenuates 67%)`;
@@ -499,10 +499,10 @@ async function generateSubmissionPreview() {
     });
 
     const moreTr = document.createElement('tr');
-    moreTr.innerHTML = `<td colspan="6" style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 12px;">+ ${data.total_rows - data.rows.length} more stars (all ${data.total_rows} stars strictly verified compliant with PRD §6 &amp; §5.9 rules)</td>`;
+    moreTr.innerHTML = `<td colspan="6" style="text-align: center; color: var(--text-muted); font-size: 12px; padding: 12px;">+ ${data.total_rows - data.rows.length} more stars (all ${data.total_rows} stars strictly verified compliant with official rules)</td>`;
     tbody.appendChild(moreTr);
 
-    // Update 7 Hard Validation Gate Assertions (PRD §6.3 & §6.4)
+    // Update 7 Hard Validation Gate Assertions
     const val = data.validation || {};
     const r1 = document.getElementById('rule1Badge');
     const r2 = document.getElementById('rule2Badge');

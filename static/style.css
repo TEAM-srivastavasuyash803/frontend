@@ -772,7 +772,7 @@ select.input-control:focus, input.input-control:focus {
   to { transform: rotate(360deg); }
 }
 
-/* Pre-Flight Data Reconciliation & Audit Panel (PRD §4.7 & §5.9) */
+/* Pre-Flight Data Reconciliation & Audit Panel */
 .audit-panel {
   background: var(--bg-card-white);
   border: 1px solid var(--border-medium);
