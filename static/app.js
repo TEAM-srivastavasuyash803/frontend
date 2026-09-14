@@ -121,6 +121,16 @@ function renderDashboard(data) {
 
   // 7. Update Enlarged BLS Peaks Table
   renderBLSPeaks(data.bls.top_peaks, data.bls.period);
+
+  // 8. Ensure all charts expand to 100% container dimensions without empty margins
+  setTimeout(() => {
+    ['lightCurvePlot', 'blsPlot', 'foldedPlot'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.data) {
+        Plotly.Plots.resize(el);
+      }
+    });
+  }, 50);
 }
 
 function plotLightCurve(data) {
@@ -209,7 +219,16 @@ function plotBLS(data) {
 }
 
 function plotFolded(data) {
-  if (!data.folded.phase || data.folded.phase.length === 0) return;
+  const el = document.getElementById('foldedPlot');
+  if (!data.folded || !data.folded.phase || data.folded.phase.length === 0) {
+    if (el) {
+      el.innerHTML = `<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-size:13px;text-align:center;padding:24px;gap:6px;">
+        <span style="font-weight:600;color:var(--text-secondary);">No Periodic Transit Signal Detected</span>
+        <span style="font-size:12px;">BLS search power remained below the 8.5 MAD significance floor. Phase folding omitted.</span>
+      </div>`;
+    }
+    return;
+  }
 
   const dotsTrace = {
     x: data.folded.phase,
@@ -231,6 +250,7 @@ function plotFolded(data) {
   };
 
   const layout = {
+    autosize: true,
     margin: { l: 55, r: 20, t: 20, b: 40 },
     paper_bgcolor: THEME.paperBg,
     plot_bgcolor: THEME.plotBg,
@@ -286,32 +306,47 @@ function renderVetting(v) {
 
 function renderCharacterisation(data) {
   const card = document.getElementById('characterisationCard');
-  if (data.classification.prediction !== 1) {
-    card.style.display = 'none';
-    return;
-  }
+  if (!card) return;
+  card.style.display = 'flex';
 
-  card.style.display = 'block';
-  const c = data.characterization;
-  document.getElementById('spotlightCategory').textContent = `${c.planet_class} Candidate`;
-  document.getElementById('spotlightName').textContent = data.star_id;
-
+  const c = data.characterization || {};
+  const isPlanet = data.classification && data.classification.prediction === 1;
   const hzBadge = document.getElementById('hzBadge');
-  if (c.habitable_zone) {
-    hzBadge.style.display = 'inline-flex';
-    hzBadge.textContent = '🌿 Habitable Zone';
-    hzBadge.className = 'badge badge-sage';
-  } else {
-    hzBadge.textContent = 'Non-Habitable Zone';
-    hzBadge.className = 'badge badge-sand';
-  }
 
-  document.getElementById('statRpEarth').textContent = `${c.planet_radius_earth} R⊕`;
-  document.getElementById('statRpRs').textContent = c.rp_rs;
-  document.getElementById('statSemiMajor').textContent = `${c.semi_major_axis_au} AU`;
-  document.getElementById('statFlux').textContent = `${c.stellar_flux_earth} S⊕`;
-  document.getElementById('statTeq').textContent = `${c.teq_k} K`;
-  document.getElementById('statHost').textContent = `${c.host_teff} K / ${c.host_radius} R☉`;
+  if (isPlanet && c.planet_class) {
+    document.getElementById('spotlightCategory').textContent = `${c.planet_class} Candidate`;
+    document.getElementById('spotlightName').textContent = data.star_id;
+
+    if (c.habitable_zone) {
+      hzBadge.style.display = 'inline-flex';
+      hzBadge.textContent = '🌿 Habitable Zone';
+      hzBadge.className = 'badge badge-sage';
+    } else {
+      hzBadge.textContent = 'Non-Habitable Zone';
+      hzBadge.className = 'badge badge-sand';
+    }
+
+    document.getElementById('statRpEarth').textContent = `${c.planet_radius_earth || '—'} R⊕`;
+    document.getElementById('statRpRs').textContent = c.rp_rs || '—';
+    document.getElementById('statSemiMajor').textContent = `${c.semi_major_axis_au || '—'} AU`;
+    document.getElementById('statFlux').textContent = `${c.stellar_flux_earth || '—'} S⊕`;
+    document.getElementById('statTeq').textContent = `${c.teq_k || '—'} K`;
+    document.getElementById('statHost').textContent = `${c.host_teff || 5778} K / ${c.host_radius || 1.0} R☉`;
+  } else {
+    // Keep card visible to leave no empty space! Display stellar host telemetry & detection limits
+    document.getElementById('spotlightCategory').textContent = 'Stellar Host & Sensitivity Limits';
+    document.getElementById('spotlightName').textContent = `${data.star_id} (Null Transit)`;
+
+    hzBadge.textContent = 'Null Candidate';
+    hzBadge.className = 'badge badge-sand';
+
+    document.getElementById('statRpEarth').textContent = '— (Null)';
+    document.getElementById('statRpRs').textContent = '< 0.008 (Limit)';
+    document.getElementById('statSemiMajor').textContent = '—';
+    document.getElementById('statFlux').textContent = '—';
+    document.getElementById('statTeq').textContent = '—';
+    document.getElementById('statHost').textContent = `${c.host_teff || 5778} K / ${c.host_radius || 1.0} R☉`;
+  }
 }
 
 async function generateSubmissionPreview() {

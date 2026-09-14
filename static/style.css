@@ -153,9 +153,10 @@ body {
 
 /* Layout Container */
 .container {
-  max-width: 1360px;
-  margin: 28px auto;
-  padding: 0 24px;
+  max-width: 1600px;
+  width: 95%;
+  margin: 20px auto;
+  padding: 0 16px;
 }
 
 /* Star Selection & Control Bar */
@@ -163,21 +164,27 @@ body {
   background: var(--bg-card-white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 20px 24px;
-  margin-bottom: 24px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 16px;
   box-shadow: var(--shadow-sm);
 }
 
 .control-group {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1;
+  min-width: 260px;
+}
+
+.control-group:last-child {
+  flex: 0 0 auto;
+  min-width: auto;
 }
 
 .control-label {
@@ -186,18 +193,20 @@ body {
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
 }
 
 select.input-control, input.input-control {
   background: var(--bg-main);
   border: 1px solid var(--border-medium);
-  padding: 9px 14px;
+  padding: 9px 12px;
   border-radius: var(--radius-sm);
   color: var(--text-primary);
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   outline: none;
-  min-width: 240px;
+  width: 100%;
+  min-width: 220px;
   transition: all 0.2s ease;
 }
 
@@ -251,19 +260,28 @@ select.input-control:focus, input.input-control:focus {
 /* Metric Banners */
 .metrics-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1180px) {
+  .metrics-row {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
 }
 
 .metric-card {
   background: var(--bg-card-white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 16px 20px;
+  padding: 14px 18px;
   box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .metric-card::before {
@@ -286,18 +304,19 @@ select.input-control:focus, input.input-control:focus {
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.6px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
 .metric-value {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-primary);
   letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .metric-sub {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--text-secondary);
   margin-top: 2px;
 }
@@ -305,15 +324,28 @@ select.input-control:focus, input.input-control:focus {
 /* Main Grid */
 .dashboard-grid {
   display: grid;
-  grid-template-columns: 2fr 1.2fr;
-  gap: 24px;
-  margin-bottom: 28px;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: stretch;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1080px) {
   .dashboard-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.main-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Card Styles */
@@ -321,17 +353,19 @@ select.input-control:focus, input.input-control:focus {
   background: var(--bg-card-white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 22px 24px;
-  margin-bottom: 24px;
+  padding: 18px 20px;
+  margin-bottom: 0;
   box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 18px;
-  padding-bottom: 12px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
   border-bottom: 1px solid var(--border-light);
 }
 
@@ -353,7 +387,7 @@ select.input-control:focus, input.input-control:focus {
 /* Chart containers */
 .chart-box {
   width: 100%;
-  height: 280px;
+  height: 270px;
   position: relative;
   background: #FCFAF7;
   border-radius: var(--radius-sm);
@@ -362,23 +396,27 @@ select.input-control:focus, input.input-control:focus {
 }
 
 .chart-box.tall {
-  height: 320px;
+  height: 310px;
 }
 
 .chart-box.bls-chart-large {
-  height: 380px;
+  height: 310px;
+}
+
+.chart-box.folded-chart {
+  height: 270px;
 }
 
 /* BLS Peaks Panel to fill space beside right column */
 .bls-peaks-panel {
-  margin-top: 18px;
+  margin-top: 14px;
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .bls-peaks-header {
@@ -403,7 +441,7 @@ select.input-control:focus, input.input-control:focus {
 }
 
 .bls-table-wrap {
-  max-height: 220px;
+  max-height: 190px;
   overflow-y: auto;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
@@ -446,14 +484,14 @@ select.input-control:focus, input.input-control:focus {
 .vetting-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .vetting-item {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 14px 16px;
+  padding: 10px 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -466,7 +504,7 @@ select.input-control:focus, input.input-control:focus {
 }
 
 .vetting-info p {
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--text-secondary);
 }
 
@@ -479,26 +517,30 @@ select.input-control:focus, input.input-control:focus {
   background: linear-gradient(135deg, #FDFBF7 0%, #F5EFE6 100%);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 18px 20px;
   position: relative;
   overflow: hidden;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .spotlight-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .planet-name {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
 }
 
 .planet-category {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: var(--accent-terracotta);
   text-transform: uppercase;
@@ -508,15 +550,15 @@ select.input-control:focus, input.input-control:focus {
 .planet-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 16px;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .p-stat {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
-  padding: 10px 14px;
+  padding: 8px 12px;
 }
 
 .p-stat-lbl {
@@ -527,7 +569,7 @@ select.input-control:focus, input.input-control:focus {
 }
 
 .p-stat-val {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--text-primary);
   margin-top: 2px;
@@ -535,7 +577,7 @@ select.input-control:focus, input.input-control:focus {
 
 /* Submission Hub & Table */
 .table-responsive {
-  max-height: 380px;
+  max-height: 420px;
   overflow-y: auto;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
