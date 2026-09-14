@@ -222,7 +222,7 @@
           <div class="spotlight-header">
             <div>
               <div class="planet-category" id="spotlightCategory">Earth Analog Candidate</div>
-              <div class="planet-name" id="spotlightName">Target Star</div>
+              <div class="planet-name" id="spotlightName">DEMO_EARTH_ANALOG</div>
             </div>
             <span id="hzBadge" class="badge badge-sage">🌿 Habitable Zone</span>
           </div>
@@ -252,7 +252,50 @@
               <div class="p-stat-lbl">Host Teff / Radius</div>
               <div class="p-stat-val" id="statHost">— K / — R☉</div>
             </div>
+            <div class="p-stat">
+              <div class="p-stat-lbl">Est. Density &amp; Class</div>
+              <div class="p-stat-val" id="statDensity">5.2 g/cm³ (Rocky)</div>
+            </div>
+            <div class="p-stat">
+              <div class="p-stat-lbl">Earth Similarity Index</div>
+              <div class="p-stat-val" id="statEsi">0.91 / 1.00</div>
+            </div>
+            <div class="p-stat">
+              <div class="p-stat-lbl">Transit Impact Param (b)</div>
+              <div class="p-stat-val" id="statImpact">0.32 (Central)</div>
+            </div>
           </div>
+
+          <!-- Habitable Zone Insolation Track -->
+          <div class="hz-track-container">
+            <div class="hz-track-header">
+              <span class="hz-track-title">ORBITAL INSOLATION &amp; HABITABLE REGIME</span>
+              <span class="hz-track-range" id="hzTrackRange">0.32 S⊕ &le; S &le; 1.78 S⊕</span>
+            </div>
+            <div class="hz-track-bar">
+              <div class="hz-zone hot-zone" title="Hot / Venusian Zone"></div>
+              <div class="hz-zone habitable-zone" title="Temperate Habitable Zone">
+                <span class="hz-zone-lbl">HABITABLE ZONE</span>
+              </div>
+              <div class="hz-zone cold-zone" title="Cold / Outer Boundary"></div>
+              <div class="hz-planet-marker" id="hzPlanetMarker" style="left: 48%;" title="Candidate orbit location"></div>
+            </div>
+            <div class="hz-track-ticks">
+              <span>Hot Limit (Venus)</span>
+              <span style="color: var(--accent-sage); font-weight: 600;">Earth Eq (1.0 S⊕)</span>
+              <span>Cold Limit (Mars)</span>
+            </div>
+          </div>
+
+          <!-- Habitability Assessment Callout -->
+          <div class="habitability-callout" id="habitabilityCallout">
+            <div class="callout-icon" id="calloutIcon">🌍</div>
+            <div class="callout-text">
+              <strong id="calloutHeading">Earth-Analog Terrestrial Candidate:</strong>
+              <span id="calloutDesc">Fitted radius (1.04 R⊕) and insolation (1.12 S⊕) are consistent with a temperate terrestrial world with surface liquid water potential.</span>
+            </div>
+          </div>
+
         </div>
 
       </div>

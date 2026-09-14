@@ -575,6 +575,130 @@ select.input-control:focus, input.input-control:focus {
   margin-top: 2px;
 }
 
+/* Habitable Zone Track */
+.hz-track-container {
+  margin-top: 14px;
+  background: white;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hz-track-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hz-track-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.hz-track-range {
+  font-size: 11px;
+  font-family: monospace;
+  color: var(--text-muted);
+}
+
+.hz-track-bar {
+  height: 14px;
+  background: var(--bg-main);
+  border-radius: 7px;
+  display: flex;
+  position: relative;
+  overflow: visible;
+  border: 1px solid var(--border-medium);
+}
+
+.hz-zone {
+  height: 100%;
+}
+
+.hz-zone.hot-zone {
+  width: 25%;
+  background: linear-gradient(90deg, #F0A89A, #E8B9AC);
+  border-radius: 6px 0 0 6px;
+}
+
+.hz-zone.habitable-zone {
+  width: 50%;
+  background: linear-gradient(90deg, #A7D3AF, #68A576);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hz-zone-lbl {
+  font-size: 9px;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.6px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.hz-zone.cold-zone {
+  width: 25%;
+  background: linear-gradient(90deg, #B5D2E8, #86B2D6);
+  border-radius: 0 6px 6px 0;
+}
+
+.hz-planet-marker {
+  position: absolute;
+  top: -4px;
+  width: 22px;
+  height: 22px;
+  background: var(--accent-terracotta);
+  border: 2.5px solid white;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 2px 6px rgba(196, 98, 67, 0.45);
+  transition: left 0.4s ease;
+  z-index: 2;
+}
+
+.hz-track-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+/* Habitability Callout */
+.habitability-callout {
+  margin-top: 14px;
+  background: #F4F8F4;
+  border: 1px solid #C4DFC8;
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.callout-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.callout-text {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--text-primary);
+}
+
+.callout-text strong {
+  color: var(--accent-sage);
+  display: block;
+  margin-bottom: 2px;
+}
+
 /* Submission Hub & Table */
 .table-responsive {
   max-height: 420px;
